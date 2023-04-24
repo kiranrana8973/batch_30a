@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../model/arithmetic.dart';
+
 // final -> run time
 // const - > compile
 class ArithmeticView extends StatefulWidget {
@@ -14,11 +16,27 @@ class _ArithmeticViewState extends State<ArithmeticView> {
   int second = 0;
   int result = 0;
 
+  late Arithmetic arithmetic;
+
+  void add() {
+    arithmetic = Arithmetic();
+    setState(() {
+      result = arithmetic.add(first, second);
+    });
+  }
+
+  void sub() {
+    arithmetic = Arithmetic();
+    setState(() {
+      result = arithmetic.sub(first, second);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Arithemtic'),
+        title: const Text('Arithmetic'),
         centerTitle: true,
         elevation: 0,
       ),
@@ -56,9 +74,7 @@ class _ArithmeticViewState extends State<ArithmeticView> {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    setState(() {
-                      result = first + second;
-                    });
+                    add();
                   },
                   child: const Text('ADD'),
                 ),
@@ -68,9 +84,7 @@ class _ArithmeticViewState extends State<ArithmeticView> {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    setState(() {
-                      result = first - second;
-                    });
+                    sub();
                   },
                   child: const Text('SUB'),
                 ),
