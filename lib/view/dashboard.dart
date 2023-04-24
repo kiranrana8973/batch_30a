@@ -23,8 +23,24 @@ class DashboardView extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, '/arithmeticRoute');
+              },
               child: const Text('Arithmetic'),
+            ),
+            const SizedBox(height: 8),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/circleRoute');
+              },
+              child: const Text('Area of circle'),
+            ),
+            const SizedBox(height: 8),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/changeNameRoute');
+              },
+              child: const Text('Change Name'),
             ),
           ],
         ),
