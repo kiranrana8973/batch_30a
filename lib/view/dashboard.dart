@@ -18,7 +18,9 @@ class DashboardView extends StatelessWidget {
           children: [
             const SizedBox(height: 8),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, '/siRoute');
+              },
               child: const Text('Simple Interest'),
             ),
             const SizedBox(height: 8),
@@ -41,6 +43,13 @@ class DashboardView extends StatelessWidget {
                 Navigator.pushNamed(context, '/changeNameRoute');
               },
               child: const Text('Change Name'),
+            ),
+            const SizedBox(height: 8),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/columnRoute');
+              },
+              child: const Text('Column'),
             ),
           ],
         ),

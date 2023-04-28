@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../model/arithmetic.dart';
 
-// final -> run time
-// const - > compile
 class ArithmeticView extends StatefulWidget {
   const ArithmeticView({super.key});
 
@@ -12,25 +10,42 @@ class ArithmeticView extends StatefulWidget {
 }
 
 class _ArithmeticViewState extends State<ArithmeticView> {
-  int first = 0;
-  int second = 0;
+  final firstController = TextEditingController();
+  final secondController = TextEditingController();
   int result = 0;
+
+  @override
+  void initState() {
+    firstController.text = '67';
+    secondController.text = '89';
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    firstController.dispose();
+    secondController.dispose();
+    super.dispose();
+  }
 
   late Arithmetic arithmetic;
 
   void add() {
     arithmetic = Arithmetic();
     setState(() {
-      result = arithmetic.add(first, second);
+      result = arithmetic.add(
+        int.parse(firstController.text),
+        int.parse(secondController.text),
+      );
     });
   }
 
-  void sub() {
-    arithmetic = Arithmetic();
-    setState(() {
-      result = arithmetic.sub(first, second);
-    });
-  }
+  // void sub() {
+  //   arithmetic = Arithmetic();
+  //   setState(() {
+  //     result = arithmetic.sub(first, second);
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -47,9 +62,8 @@ class _ArithmeticViewState extends State<ArithmeticView> {
             children: [
               const SizedBox(height: 8),
               TextField(
-                onChanged: (value) {
-                  first = int.parse(value);
-                },
+                controller: firstController,
+                keyboardType: TextInputType.number,
                 decoration: InputDecoration(
                   hintText: 'Enter first no',
                   border: OutlineInputBorder(
@@ -59,9 +73,8 @@ class _ArithmeticViewState extends State<ArithmeticView> {
               ),
               const SizedBox(height: 8),
               TextField(
-                onChanged: (value) {
-                  second = int.parse(value);
-                },
+                controller: secondController,
+                keyboardType: TextInputType.number,
                 decoration: InputDecoration(
                   labelText: 'Enter second no',
                   border: OutlineInputBorder(
@@ -84,7 +97,7 @@ class _ArithmeticViewState extends State<ArithmeticView> {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    sub();
+                    //  sub();
                   },
                   child: const Text('SUB'),
                 ),
