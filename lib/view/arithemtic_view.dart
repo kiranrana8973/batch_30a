@@ -10,14 +10,12 @@ class ArithmeticView extends StatefulWidget {
 }
 
 class _ArithmeticViewState extends State<ArithmeticView> {
-  final firstController = TextEditingController();
-  final secondController = TextEditingController();
+  final firstController = TextEditingController(text: '60');
+  final secondController = TextEditingController(text: '70');
   int result = 0;
 
   @override
   void initState() {
-    firstController.text = '67';
-    secondController.text = '89';
     super.initState();
   }
 
@@ -40,12 +38,15 @@ class _ArithmeticViewState extends State<ArithmeticView> {
     });
   }
 
-  // void sub() {
-  //   arithmetic = Arithmetic();
-  //   setState(() {
-  //     result = arithmetic.sub(first, second);
-  //   });
-  // }
+  void sub() {
+    arithmetic = Arithmetic();
+    setState(() {
+      result = arithmetic.sub(
+        int.parse(firstController.text),
+        int.parse(secondController.text),
+      );
+    });
+  }
 
   final myKey = GlobalKey<FormState>();
 
@@ -115,7 +116,7 @@ class _ArithmeticViewState extends State<ArithmeticView> {
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {
-                      //  sub();
+                      sub();
                     },
                     child: const Text('SUB'),
                   ),
