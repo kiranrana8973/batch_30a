@@ -23,6 +23,7 @@ class _ArithmeticViewState extends State<ArithmeticView> {
   void dispose() {
     firstController.dispose();
     secondController.dispose();
+
     super.dispose();
   }
 
@@ -36,6 +37,12 @@ class _ArithmeticViewState extends State<ArithmeticView> {
         int.parse(secondController.text),
       );
     });
+
+    Navigator.pushNamed(
+      context,
+      '/outputRoute',
+      arguments: result,
+    );
   }
 
   void sub() {
@@ -46,6 +53,12 @@ class _ArithmeticViewState extends State<ArithmeticView> {
         int.parse(secondController.text),
       );
     });
+    Navigator.pushNamed(
+      context,
+      '/outputRoute',
+      arguments: result,
+    );
+    //   result = ModalRoute.of(context)!.settings.arguments as int?;
   }
 
   final myKey = GlobalKey<FormState>();
